@@ -1,0 +1,76 @@
+:root{
+  --primary:#0284c7;
+  --accent:#38bdf8;
+  --muted:#6b7280;
+  --bg:linear-gradient(to right, #f0fdfa, #e6fffa);
+  --card-bg:#fff;
+  --text:#111827;
+}
+[data-theme="dark"]{
+  --bg: linear-gradient(120deg,#071426,#072b3a);
+  --card-bg:#071a28;
+  --text:#e6eef8;
+  --muted:#9aa9b3;
+  --primary:#2da1ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  transition:background .25s, color .25s;
+}
+nav{
+  background:linear-gradient(90deg,#0ea5e9,#0284c7);
+  color:#fff;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.12);
+}
+nav h1{font-size:1.6rem;margin:0}
+.nav-actions span, .small-btn{margin-left:14px;padding:6px 12px;border-radius:8px;cursor:pointer;border:none;background:transparent;color:inherit}
+.container{
+  max-width:1100px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:18px;
+}
+.card{
+  background:var(--card-bg);border-radius:14px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,0.06);
+  transition:background .25s, box-shadow .25s;
+}
+.card h2{color:var(--primary);margin-top:0}
+input[type="text"], input[type="time"], input[type="tel"], select{
+  width:100%;padding:12px;border-radius:10px;border:2px solid #93c5fd;margin:8px 0;font-size:1rem;
+  transition:box-shadow .2s, border-color .2s, background .2s, color .2s;
+  background:transparent;color:var(--text);
+}
+input:focus, select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 6px #93c5fd}
+button{
+  background:linear-gradient(90deg,var(--accent),var(--primary));color:white;border:none;padding:12px;border-radius:10px;cursor:pointer;font-weight:600;
+}
+button:hover{transform:scale(1.03)}
+.reminder-card{
+  display:flex;justify-content:space-between;align-items:center;background:#f0f9ff;border-left:6px solid var(--primary);
+  padding:10px;margin-top:10px;border-radius:10px;
+}
+.reminder-card button{background:#ef4444;width:auto;padding:6px 10px;border-radius:8px}
+.reminder-card button:hover{background:#dc2626}
+#map{height:360px;border-radius:10px;margin-top:10px}
+.muted{color:var(--muted);font-size:.95rem}
+#toast{position:fixed;right:18px;bottom:18px;z-index:999}
+.toast-msg{background:var(--primary);color:#fff;padding:12px 14px;border-radius:10px;margin-top:8px;box-shadow:0 10px 30px rgba(2,132,199,.18);animation:toastIn .36s}
+@keyframes toastIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.row{display:flex;align-items:center}
+.small-btn{background:transparent;border:1px solid rgba(255,255,255,0.12);padding:6px 8px;border-radius:8px;color:#fff}
+.link-btn{background:transparent;border:none;color:var(--muted);cursor:pointer;margin-top:12px}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.4);z-index:1000}
+.modal[aria-hidden="false"]{display:flex}
+.modal-content{background:var(--card-bg);padding:18px;border-radius:12px;min-width:280px;box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.modal input{width:100%;margin:8px 0;padding:10px;border-radius:8px;border:1px solid #ccc}
+
+/* responsive */
+@media(max-width:768px){.container{grid-template-columns:1fr;padding:12px}.nav-actions{display:flex;gap:8px}}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💊 MediTrack — Smart Medicine Reminder</title>
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0284c7">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- App styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <h1>💊 MediTrack</h1>
+    <div class="nav-actions">
+      <button id="theme-toggle" aria-pressed="false" class="small-btn">Dark</button>
+      <span onclick="scrollToSection('reminders')">Reminders</span>
+      <span onclick="scrollToSection('pharmacies')">Find Pharmacy</span>
+      <button id="authBtn" class="small-btn">Login</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Left: Reminder Section -->
+    <div>
+      <div class="card" id="reminders">
+        <h2>➕ Add Medicine Reminder</h2>
+        <input type="text" id="medicineName" placeholder="💊 Medicine Name" aria-label="Medicine name" list="meds-list" autocomplete="off"/>
+        <datalist id="meds-list"></datalist>
+
+        <input type="time" id="medicineTime" aria-label="Reminder time"/>
+        <select id="recurrence" aria-label="Recurrence">
+          <option value="once">Once</option>
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+        </select>
+
+        <div class="row" style="gap:8px; align-items:center; margin-top:8px;">
+          <input type="checkbox" id="smsToggle"/>
+          <label for="smsToggle" class="muted">Send SMS reminder</label>
+          <input type="tel" id="phoneInput" placeholder="+91xxxxxxxxxx" style="flex:1" aria-label="Phone number"/>
+        </div>
+
+        <button id="addBtn">Add Reminder</button>
+
+        <p id="signedInAs" class="muted" style="margin-top:8px;"></p>
+      </div>
+
+      <div class="card">
+        <h2>⏰ Medicine Reminders</h2>
+        <div id="reminderList" aria-live="polite"></div>
+
+        <div style="display:flex; gap:8px; margin-top:12px;">
+          <button id="exportBtn">📤 Export</button>
+          <input type="file" id="importFile" accept="application/json" hidden>
+          <button id="importBtn">📥 Import</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Pharmacy Section -->
+    <div class="card" id="pharmacies">
+      <h2>🏥 Nearby Pharmacies</h2>
+      <div id="map" role="region" aria-label="Map of nearby pharmacies"></div>
+      <p id="mapStatus" class="muted"></p>
+    </div>
+  </main>
+
+  <!-- Toast container -->
+  <div id="toast" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true">
+      <h3>Sign in to MediTrack</h3>
+
+      <div id="local-login">
+        <input id="localUser" placeholder="Username" />
+        <input id="localPass" placeholder="Password" type="password" />
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button id="localLoginBtn">Login (Local)</button>
+          <button id="localRegisterBtn">Register (Local)</button>
+        </div>
+      </div>
+
+      <hr/>
+
+      <div id="firebase-login">
+        <button id="googleSignInBtn">Sign in with Google</button>
+        <p class="muted small">Google login uses Firebase — see README for setup</p>
+      </div>
+
+      <button id="closeModal" class="link-btn">Close</button>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <!-- Firebase (compat for simplicity) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <!-- App logic -->
+  <script src="script.js"></script>
+
+  <!-- Service Worker registration (must be served over HTTPS or localhost) -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(reg => {
+          console.log('SW registered:', reg.scope);
+        }).catch(err => console.warn('SW register failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
