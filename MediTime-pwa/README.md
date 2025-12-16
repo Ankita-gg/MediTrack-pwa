@@ -187,6 +187,8 @@ Automatic location-based pharmacy updates
 
 
 Integration with real healthcare APIs
+
+
 Live Demo
 
 MediTrack is deployed on Netlify and is accessible at the link below. The live version demonstrates full Progressive Web App functionality, including offline support and user authentication.
@@ -205,3 +207,4 @@ Both authentication methods maintain separate user sessions, ensuring personaliz
 Deployment Details
 
 The application is deployed using Netlify with continuous deployment enabled. The production build includes service worker registration, offline caching, and installable Progressive Web App capabilities, allowing the app to behave like a native mobile application when installed.
+
