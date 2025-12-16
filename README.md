@@ -1,2 +1,2 @@
 # MediTrack-pwa
-A Progressive Web App (PWA) for medicine reminders with dark mode, user login, SMS alerts, and nearby open pharmacy detection using geolocation.
+MediTrack is a deployed Progressive Web App featuring dual authentication with local and Google login, offline support, and real time geolocation based pharmacy discovery.
