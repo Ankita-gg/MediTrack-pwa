@@ -1,8 +1,6 @@
 MediTrack – Medicine Reminder Progressive Web App (PWA)
 
-MediTrack is a Progressive Web App (PWA) that reminds users to take medicines on time and helps them locate nearby open medicine shops using real-time geolocation.
-
-The app works offline, supports push notifications, and behaves like a mobile app when installed.
+MediTrack is a deployed Progressive Web App that reminds users to take medicines on time and helps them locate nearby open medical stores using real time geolocation. The application supports offline usage, push notifications, and installable app behavior, and includes dual authentication with local login and Google sign in.
 
 🚀 Features
 ⏰ Medicine Reminder
@@ -187,4 +185,23 @@ Export/import medicine schedules
 
 Automatic location-based pharmacy updates
 
+
 Integration with real healthcare APIs
+Live Demo
+
+MediTrack is deployed on Netlify and is accessible at the link below. The live version demonstrates full Progressive Web App functionality, including offline support and user authentication.
+
+Live URL
+https://meditrack-reminder-app.netlify.app/
+
+Authentication and User Login
+
+MediTrack implements a dual authentication system to support both offline and online usage.
+
+The application provides a local authentication mechanism where user credentials and reminder data are stored securely in local storage, enabling full functionality even without an internet connection. In addition, the application supports Google authentication using Firebase OAuth, allowing users to sign in securely with a Google account when online.
+
+Both authentication methods maintain separate user sessions, ensuring personalized reminders and preferences for each user.
+
+Deployment Details
+
+The application is deployed using Netlify with continuous deployment enabled. The production build includes service worker registration, offline caching, and installable Progressive Web App capabilities, allowing the app to behave like a native mobile application when installed.
